@@ -1,0 +1,40 @@
+<!--
+
+    ____              _      __   __ __                              
+   / __ \____ _____  (_)__  / /  / //_/________  ____ ___  ___  _____
+  / / / / __ `/ __ \/ / _ \/ /  / ,<  / ___/ _ \/ __ `__ \/ _ \/ ___/
+ / /_/ / /_/ / / / / /  __/ /  / /| |/ /  /  __/ / / / / /  __/ /    
+/_____/\__,_/_/ /_/_/\___/_/  /_/ |_/_/   \___/_/ /_/ /_/\___/_/     
+   
+ 1182.lu
+  
+split each row to 40 characters for excel by adding after each 40's character a $ to be able to split columns in excel 
+the output is shown and needs to be copied into a text file
+afterwards it needs to be imported in excel
+//-->
+
+
+
+<?php
+
+//Excel wordwrapping by Daniel Kremer 31/08/2011
+
+$row = 1;
+if (($handle = fopen("text.csv", "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+        $num = count($data);
+
+        $row++;
+        for ($c=0; $c < $num; $c++) {
+           
+  		
+			
+$newtext = wordwrap($data[$c], 40, "$");
+ echo $newtext . "<br />\n";
+
+		
+        }
+    }
+    fclose($handle);
+}
+?>
