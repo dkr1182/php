@@ -1,0 +1,32 @@
+//************ Multiple results selection **********************
+
+$query = "SELECT * FROM table WHERE time=1 ORDER BY time DESC limit 0,5"; 
+
+$result = mysql_query($query)
+   or die("Anfrage 1 fehlgeschlagen");
+
+for ($i =0; $i < mysql_num_rows($result); $i++) {
+   if (!mysql_data_seek($result, $i)) {
+       echo "Cannot seek to row $i: " . mysql_error() . "\n";
+       continue;
+   }
+
+   if (!($row = mysql_fetch_object($result)))
+       continue;
+
+     $timeconvert="$row->time";
+
+
+   }
+
+
+//************ Single result selection **********************
+
+
+
+$query2 = "SELECT topicname FROM nuke_topics WHERE topicid=$row->topic";
+$result2 = mysql_query($query2)
+or die("Anfrage 2 fehlgeschlagen");
+$row2 = mysql_fetch_object($result2);
+
+echo"<i>$row2->topicname";
