@@ -1,4 +1,4 @@
 php
 ===
 
-useful php scripts
+useful php scripts by Daniel
