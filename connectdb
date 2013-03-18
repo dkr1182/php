@@ -1,0 +1,24 @@
+<?php
+<!--
+
+    ____              _      __   __ __                              
+   / __ \____ _____  (_)__  / /  / //_/________  ____ ___  ___  _____
+  / / / / __ `/ __ \/ / _ \/ /  / ,<  / ___/ _ \/ __ `__ \/ _ \/ ___/
+ / /_/ / /_/ / / / / /  __/ /  / /| |/ /  /  __/ / / / / /  __/ /    
+/_____/\__,_/_/ /_/_/\___/_/  /_/ |_/_/   \___/_/ /_/ /_/\___/_/     
+   
+ 1182.lu  
+   
+//-->
+
+/* by Daniel Kremer 19/11/2005.*/
+
+//ADMIN needs to be replaced by DB admin
+//PASSWORD needs to be replaced by DB password
+//DATABASE needs to be replaced by DB name
+
+$link = mysql_connect("localhost", "ADMIN", "PASSWORD")
+or die("no connection possible: " .mysql_error());
+mysql_select_db("DATABASE");
+
+?>
