@@ -1,0 +1,39 @@
+<?php
+<!--
+
+    ____              _      __   __ __                              
+   / __ \____ _____  (_)__  / /  / //_/________  ____ ___  ___  _____
+  / / / / __ `/ __ \/ / _ \/ /  / ,<  / ___/ _ \/ __ `__ \/ _ \/ ___/
+ / /_/ / /_/ / / / / /  __/ /  / /| |/ /  /  __/ / / / / /  __/ /    
+/_____/\__,_/_/ /_/_/\___/_/  /_/ |_/_/   \___/_/ /_/ /_/\___/_/     
+   
+ 1182.lu - 2013  
+   
+//-->
+//Get the contents of the Facebook Wall shown to your website
+//replace the xxxxxxx with your page id 
+//replace the ooooooo with your fb token 
+
+$ch = curl_init("https://graph.facebook.com/xxxxxxxxx/feed?access_token=oooooooooooo&limit=10");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+$FBpage = curl_exec($ch);
+curl_close($ch);
+
+//Interpret data with JSON
+$FBdata = json_decode($FBpage);
+//Loop through data for each news item
+foreach ($FBdata->data as $news ) {
+//Explode News and Page ID's into 2 values
+$StatusID = explode("_", $news->id);
+$link = $news->link;
+$search  = array('â‚¬', 'Ã¤', 'Ã©', 'â€™', 'Ã¢', 'â€“', 'Ã', 'à¶');
+$replace = array('€', 'ä', 'é', ' ', 'â', '-', 'à', 'ö');
+$subject = $news->message;
+$message = str_replace($search, $replace, $subject);
+
+//Check for empty status (for example on shared link only)
+if (!empty($message) and !empty($link)) { echo "<li> <a target=_blank href=$link>$message</a>"; } else 
+if (!empty($message)) {echo "<li> $message";}
+echo"</li>";
+}
+?>
