@@ -1,0 +1,13 @@
+<!-- redirect mobile devices to mobile web//-->
+<script type="text/javascript">
+if (screen.width <= 699) {
+document.location = "mobile.php";
+}
+</script>
+<script language=javascript>
+
+if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/Android/i))) {
+   location.replace("http://www.neuberg.lu/www2/mobile.php");
+}
+
+</script>
